@@ -1,5 +1,6 @@
 <% export_config = active_scaffold_config.export %>
-<h3><%=as_(:columns_for_export)%></h3>
+<h5><%=as_(:columns_for_export)%></h5>
+<br />
 <% if ActiveScaffold.js_framework == :jquery %>
 <%= link_to as_(:select_all), '#', onclick: 'jQuery(".columnCheckbox").prop("checked", true);', class: 'active-scaffold-footer' %>
  |
@@ -13,8 +14,8 @@
 <% end -%>
 &nbsp;
 </div>
-<div class="separator"></div>
-<h3><%=as_(:options)%></h3>
+<br />
+<h5><%=as_(:options)%></h5>
 <div class="options checkbox-list">
   <div class="option checkbox-wrapper">
     <%= content_tag(:label, check_box_tag('skip_header', 1, export_config.default_skip_header) + " #{as_(:omit_header)}".html_safe) %>
