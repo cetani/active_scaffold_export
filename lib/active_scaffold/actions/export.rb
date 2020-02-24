@@ -25,7 +25,7 @@ module ActiveScaffold::Actions
       export_config = active_scaffold_config.export
       if params[:export_columns].nil?
         export_columns = {}
-        export_config.columns.each { |col|
+        export_config.columns.visible_columns.each { |col|
           export_columns[col.name.to_sym] = 1
         }
         options = {
@@ -93,7 +93,7 @@ module ActiveScaffold::Actions
 
     protected
     def export_columns
-      @export_columns = active_scaffold_config.export.columns.reject { |col| params[:export_columns][col.name.to_sym].nil? }
+      @export_columns = active_scaffold_config.export.columns.visible_columns.reject { |col| params[:export_columns][col.name.to_sym].nil? }
       sorting = active_scaffold_config.list.user.sorting || active_scaffold_config.list.sorting
       sorting_columns = sorting.reject { |col, _| @export_columns.include?(col) }.map(&:first)
       @export_columns + sorting_columns
